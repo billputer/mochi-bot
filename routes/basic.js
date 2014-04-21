@@ -194,6 +194,20 @@ var basicRoutes = {
 					}
 				});
 			}
+		},
+		/**
+		 * Spam horse_ebooks anytime someone mentions ebooks.
+		 */
+		{
+			match: /ebooks/gi,
+			action: function(res){
+				var self = this,
+					msg = res.message;
+
+				getEbooks(function(ebooks){
+					self.say(res.channel, ebooks);
+				});
+			}
 		}
 	],
 };
@@ -218,6 +232,13 @@ function getCatGif(callback){
 	http.request(httpOpts, function(response){
 		if( typeof callback === 'function' ) callback(response.headers.location);
 	}).end();
+}
+
+function getEbooks(callback){
+	http.get("http://horseebooksipsum.com/api/v1/1?links=false&html=false", function(res){
+		res.setEncoding('utf8');
+		res.on("data", function(chunk){ callback(chunk); });
+	});
 }
 
 
