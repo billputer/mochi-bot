@@ -44,66 +44,42 @@ var basicRoutes = {
 		// it's free software
 		{
 			match: /open source/gi,
-			action: function(res){
-				var self = this,
-					msg = res.message;
-
-				self.say(res.channel, "http://i.imgur.com/5wln1QI.gif");
-			}
+			action: sayit("http://i.imgur.com/5wln1QI.gif")
 		},
 		// welp
 		{
 			match: /welp/gi,
-			action: function(res){
-				var self = this,
-					msg = res.message;
-
-				self.say(res.channel, "http://w-e-l-p.com/");
-			}
+			action: sayit("http://w-e-l-p.com/")
 		},
 		// horrified dog
 		{
 			match: /horrified|cruft|sad|bad/gi,
-			action: function(res){
-				var self = this,
-					msg = res.message;
-
-				self.say(res.channel, "http://i.imgur.com/SfYdUmR.jpg");
-			}
+			action: sayit("http://i.imgur.com/SfYdUmR.jpg")
 		},
 		// magic
 		{
 			match: /magic/gi,
-			action: function(res){
-				var self = this,
-					msg = res.message;
-
-				self.say(res.channel, "http://i.imgur.com/xS9e0St.gif");
-			}
+			action: sayit("http://i.imgur.com/xS9e0St.gif")
 		},
 		// lizard goes heheeh
 		{
 			match: /\blol\b/gi,
-			action: function(res){
-				var self = this,
-					msg = res.message;
-
-				self.say(res.channel, "http://i.imgur.com/AKUD3VM.jpg");
-			}
+			action: sayit("http://i.imgur.com/AKUD3VM.jpg")
 		},
 		// llamma derp
 		{
 			match: /\bderp\b/gi,
-			action: function(res){
-				var self = this,
-					msg = res.message;
-
-				self.say(res.channel, "http://i.imgur.com/37NgSbx.gif");
-			}
+			action: sayit("http://i.imgur.com/37NgSbx.gif")
 		}
 	],
 };
 
+function sayit(text){
+	return function(res){
+		var self = this;
+		self.say(res.channel, text);
+	};
+}
 
 function getCatGif(callback){
 	var httpOpts = {
