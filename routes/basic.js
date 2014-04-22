@@ -40,6 +40,15 @@ var basicRoutes = {
 					self.say(res.channel, ebooks);
 				});
 			}
+		},
+		{
+			match: /open source/gi,
+			action: function(res){
+				var self = this,
+					msg = res.message;
+
+				self.say(res.channel, "http://i.imgur.com/5wln1QI.gif");
+			}
 		}
 	],
 };
